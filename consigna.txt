@@ -1,0 +1,8 @@
+CONSIGNA TP FINAL FIP
+Nuestro cliente es una red de veterinarias y desea poder acceder a la siguiente información:
+- Sucursales de Veterinarias
+- Clientes
+- Pacientes (mascotas)
+- Proveedores
+Veterinarias: nombre, dirección, id (un número generado  aleatoriamente  al  momento  del  alta) La red debe tener la posibilidad de dar de alta, modificar datos o dar de baja las mismas.
+Clientes:  nombre,  teléfono,  si  es  VIP  (cliente recurrente, en el cual se guarda el número de visitas e incrementar)
