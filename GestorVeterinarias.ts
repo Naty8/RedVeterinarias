@@ -1,12 +1,8 @@
-import { Cliente } from "./Cliente";
-import { Mascota } from "./Mascota";
 import { Proveedor } from "./Proveedor";
 import { Veterinaria } from "./Veterinaria";
 
 export class GestorVeterinarias {
   private veterinarias: Veterinaria[] = [];
-  private clientes: Cliente[] = [];
-  private mascotas: Mascota[] = [];
   private proveedores: Proveedor[] = [];
 
   generarIdUnico(): number {
@@ -19,10 +15,8 @@ export class GestorVeterinarias {
 
   existeId(id: number): boolean {
     return (
-      this.veterinarias.some((v) => v.getId() === id) ||
-      this.clientes.some((c) => c.getId() === id) ||
-      this.mascotas.some((m) => m.getIdPropietario() === id) ||
-      this.proveedores.some((p) => p.id === id)
+      this.veterinarias.some((v) => v.getId() == id) ||
+      this.proveedores.some((p) => p.id == id)
     );
   }
 
@@ -30,15 +24,45 @@ export class GestorVeterinarias {
     this.veterinarias.push(veterinaria);
   }
 
-  agregarCliente(cliente: Cliente): void {
-    this.clientes.push(cliente);
+  eliminarVeterinaria(idVeterinaria: number): boolean {
+    const veteIndex = this.veterinarias.findIndex(
+      (c) => c.getId() == idVeterinaria
+    );
+    if (veteIndex == -1) {
+      console.log("Veterinaria no encontrada.");
+      return false;
+    }
+    this.veterinarias.splice(veteIndex, 1);
+    console.log(`Veterinaria con ID ${idVeterinaria} eliminada.`);
+    return true;
   }
 
-  agregarMascota(mascota: Mascota): void {
-    this.mascotas.push(mascota);
-  }
+  // Falta el editar veterinaria
 
   agregarProveedor(proveedor: Proveedor): void {
     this.proveedores.push(proveedor);
+  }
+
+  eliminarProveedor(idProveedor: number): boolean {
+    const proveIndex = this.veterinarias.findIndex(
+      (c) => c.getId() === idProveedor
+    );
+    if (proveIndex == -1) {
+      console.log("Proveedor no encontrado.");
+      return false;
+    }
+    this.veterinarias.splice(proveIndex, 1);
+    console.log(`Proveedor con ID ${idProveedor} eliminado.`);
+    return true;
+  }
+
+  // Falta el editar proveedor
+
+  getVeterinarias() {
+    return this.veterinarias;
+  }
+
+  getProveedores() {
+    return this.proveedores;
   }
 }
