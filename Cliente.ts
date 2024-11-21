@@ -40,11 +40,17 @@ export class Cliente {
   agregarMascota(mascota: Mascota): void {
     this.mascotas.push(mascota);
   }
-
-  // Falta eliminar Mascota
-  // Falta editar Mascota
-
   getMascotas() {
     return this.mascotas;
   }
+    eliminarMascota(idMascota:number): void{
+    this.mascotas= this.mascotas.filter(mascota => mascota.getIdPropietario() !== idMascota);
+  }
+  editarMascota(idMascota:number, mascotaActualizada: Mascota):void{
+    const indiceMascota = this.mascotas.findIndex(mascota => mascota.getIdPropietario()== idMascota);
+    if(indiceMascota !== -1){
+      this.mascotas[indiceMascota] = mascotaActualizada;
+    }
+  }
+}
 }
